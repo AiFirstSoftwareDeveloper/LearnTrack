@@ -10,6 +10,7 @@ import src.com.airtribe.learntrack.repository.BatchRepository;
 import src.com.airtribe.learntrack.repository.EntityRepository;
 import src.com.airtribe.learntrack.util.InputValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BatchService {
@@ -121,6 +122,23 @@ public class BatchService {
                 return batchRepository.getBatchRepository().get(batch_id);
             }else throw new InvalidInput("No Such Batch available !");
         } else throw new InvalidInput();
+    }
+
+    public List<String> getAllEntitiesFromBatch(String batch_id) throws InvalidInput {
+
+        if(InputValidator.isValidTextInput(batch_id)){
+            Batch batch = batchRepository.getBatchRepository().get(batch_id);
+            if (batch == null){
+                throw new InvalidInput("NO SUCH BATCH FOUND");
+            }else {
+                return batch.getEnrolledStudents();
+            }
+        }else throw new InvalidInput("Invalid Batch ID !");
+
+    }
+
+    public List<Batch> getAllBatches(){
+        return new ArrayList<>(batchRepository.getBatchRepository().values());
     }
 }
 

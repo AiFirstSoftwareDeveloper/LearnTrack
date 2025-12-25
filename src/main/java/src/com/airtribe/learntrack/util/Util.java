@@ -18,7 +18,7 @@ public class Util {
         newLine();
         printDashLine();printDashLine();
         newLine();
-        System.out.format("════════════════ %s ════════════════", title.toUpperCase());
+        System.out.format("═══════════════════════ %s ═══════════════════════", title.toUpperCase());
         newLine();
         printDashLine();printDashLine();
         newLine();
@@ -69,7 +69,7 @@ public class Util {
     public static void getHeader(Object object) {
         List<Field> headers = getHeaderTitles(object);
 
-        for (int i=0; i < headers.size()/3;i++)
+        for (int i=0; i < headers.size()/4;i++)
              printDashLine();
 
         newLine();
@@ -95,6 +95,11 @@ public class Util {
         }
     }
 
+    public static void printEntitiesDetails(List<Entity> entities){
+        for(Entity entity : entities){
+            printEntityDetails(entity);
+        }
+    }
 
     public static void printEntityDetails(Object entity) {
 

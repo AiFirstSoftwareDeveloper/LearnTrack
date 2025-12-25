@@ -363,8 +363,30 @@ public class Airtribe {
                     }
                     break;
                 case 18:
+                    try {
+                        List<Entity> entities = showAllEntitiesFromBatch();
+                        Util.printEntitiesDetails(entities);
+                    } catch (InvalidInput e) {
+                        Util.newLine();
+                        System.out.print(e.getMessage());
+                        Util.newLine();
+                        Util.printDashLine();
+                    }
+                    catch (UnAuthorizedException e) {
+                        Util.newLine();
+                        System.out.print(e.getMessage());
+                        Util.newLine();
+                        Util.printDashLine();
+                    }
                     break;
                 case 19:
+                    List<Batch> batches = null;
+                    try {
+                        batches = showAllBatchDetails();
+                    } catch (InvalidInput e) {
+                        throw new RuntimeException(e);
+                    }
+                    Util.printAllBatchDetails(batches);
                     break;
                 case 20:
                     List<Course> courses = displayAllCourses();
@@ -705,7 +727,7 @@ public class Airtribe {
         Util.newLine();
         Util.printDashLine();
         Util.newLine();
-        System.out.print("PLEASE ENTER BATCH ID:");
+        System.out.print("PLEASE ENTER STUDENT ID:");
         String entity_id = scanner.next();
         Util.newLine();
         Util.printDashLine();
@@ -861,5 +883,37 @@ public class Airtribe {
         Util.printDashLine();
         Util.newLine();
         courseService.showCourseContents(course_id);
+    }
+
+    public List<Entity> showAllEntitiesFromBatch() throws InvalidInput, UnAuthorizedException {
+
+        if(enrollService == null)
+            throw new UnAuthorizedException();
+
+        Util.newLine();
+        Util.printDashLine();
+        Util.newLine();
+        System.out.print("PLEASE ENTER BATCH ID:");
+        String batch_id = scanner.next();
+        Util.newLine();
+        Util.printDashLine();
+        Util.newLine();
+
+        List<String> entities = batchService.getAllEntitiesFromBatch(batch_id);
+        List<Entity> entityList = new ArrayList<>();
+        for (String entity_id : entities){
+            entityList.add(entityService.getEntityById(entity_id));
+        }
+
+        return entityList;
+    }
+
+    public List<Batch> showAllBatchDetails() throws InvalidInput {
+
+        List<Batch> batches = batchService.getAllBatches();
+        if(batches == null || batches.size()==0)
+            throw new InvalidInput("NO BATCH IS LIVE AT THE MOVEMENT !");
+
+        return batches;
     }
 }
