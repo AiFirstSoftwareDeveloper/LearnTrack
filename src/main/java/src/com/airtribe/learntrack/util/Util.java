@@ -158,21 +158,6 @@ public class Util {
         Util.newLine();
         Util.printDashLine();
     }
-    static void main() throws InvalidContactNumber, InvalidEmailException, InvalidInput, IOException {
-//        titlePage("Branch Details");
-//        Batch b = new Batch("AIRCORS1001", 100, "AIRINS1001", "AIRCOR1001", BatchType.OFFLINE);
-//        Util.getHeader(b);
-//        Util.printEntityDetails(b);
 
-        //servicesPage();
-
-//        Course c = new Course("Java",32);
-//        Util.getHeader(c);
-//        printCourseDetails(c);
-
-//        Entity entity = new Entity("Mukund","Vithal","Surwase","Male",35,"9145338028","surwasemukund080289@gmail.com","shelar mala","Salpe sankul society","near utkarsha society","Pune","Maharashtra","India", Role.ADMIN);
-//        Util.getHeader(entity);
-//        Util.printEntityDetails(entity);
-    }
 
 }
