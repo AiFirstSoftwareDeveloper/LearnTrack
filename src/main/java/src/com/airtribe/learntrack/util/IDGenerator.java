@@ -17,7 +17,7 @@ public class IDGenerator {
         else if (entityType instanceof Entity && ((Entity) entityType).getRole().equals(Role.ADMIN))
             return "admin";
         else if (entityType instanceof Entity)
-            return ((Entity) entityType).getRole().toString().substring(0,4)+"-"+ randomId;
+            return ((Entity) entityType).getRole().toString().substring(0,4)+ randomId;
 
         return "";
     }

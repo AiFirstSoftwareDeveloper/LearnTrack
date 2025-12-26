@@ -1,2 +1,0 @@
-# AirTribeLearnTrack
-AirTribe Management system
